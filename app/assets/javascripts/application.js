@@ -14,3 +14,16 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(".get_coupon").click(function(){
+		$("show_coupon").css({
+			"display":"blcok",
+			"positon":"fixed",
+			"width":"100px",
+			"height":"100px",
+			"margin":"auto"
+		});	 
+});
+
+
+

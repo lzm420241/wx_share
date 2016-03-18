@@ -10,6 +10,8 @@ class CouponsController < ApplicationController
 	 @secret = "777dbf34a800fefe8c14140149cd3633"
 	 @coupons = Coupon.all
 	 @users = User.all
+	 #判断是否得到券 0 未得到,1得到
+	 @get_coupon = 0
 	 if session[:weixin_openid].blank?
 		   code = params[:code]
 	 end
@@ -27,7 +29,13 @@ class CouponsController < ApplicationController
 	begin																														       @info_url = "https://api.weixin.qq.com/sns/userinfo?access_token=#{@res["access_token"]}&openid=#{@res["openid"]}&lang=zh_CN"   
 	@userinfo = JSON.parse(Net::HTTP.get_response(URI.parse(@info_url)).body)
 	rescue Exception => e   
-	end  
+	end
+	if @users.find('openid') == @info_url["openid"]
+		   @get_coupon = 1
+	else
+		 	@get_coupon = 0;
+			@users.create(openid:@info_url["openid"],name;@info_url["nickname"])
+	end		
   end
 
   # GET /coupons/1

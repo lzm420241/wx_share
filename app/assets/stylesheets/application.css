@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+ .show_coupon{
+	display:none;
+}
